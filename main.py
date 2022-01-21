@@ -8,6 +8,8 @@ import subprocess
 import shlex
 import shutil
 from dotenv import load_dotenv
+import random
+from datetime import datetime
 
 load_dotenv()
 
@@ -85,6 +87,14 @@ for i in response:
     if 'https://encrypted-' in i:
         urls.append(response[0])
 
+if not urls:
+    response = get_image_urls(f'coding with python')
+    response = response.split('"')
+    for i in response:
+        response = i.split(";s")
+        if 'https://encrypted-' in i:
+            urls.append(response[0])
+
 #Creates directory for images file
 images_dir = f'{os.getcwd()}/images'
 if not os.path.isdir(images_dir):
@@ -114,16 +124,16 @@ subprocess.call(args)
 shutil.rmtree("images/")
 os.mkdir(images_dir)
 
-title = "Python Daily Quote!"
+titles = [f"Daily Quote {datetime.today().strftime('%Y-%m-%d')}", "Quotes Daily", f"{datetime.today().strftime('%Y-%m-%d')} Quote", "Quotes", "Daily Quote", "Quote"]
 
 description = f'''Please enjoy this daily quote! \n
-Credit u/{author}. See post at {url}. \n
+These quotes are from r/quotes on Reddit \n
 This video was created and uploaded via Python!'''
 
-keywords = "Python, quote, quotes, daily quote, automation, Reddit, Praw"
+keywords = "quote", "quotes", "daily quote"
 
 #Instanciate upload video class
 upload = UploadVideo()
 
 #Calls method to upload video
-upload_video = upload.execute(video_file_path, title, description, 22, keywords, 'public')
+upload_video = upload.execute(video_file_path, random.choice(titles), description, 22, keywords, 'private')
