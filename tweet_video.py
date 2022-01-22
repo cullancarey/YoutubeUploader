@@ -145,7 +145,7 @@ def main():
     channel_id = response["items"][0]["snippet"]["channelId"]
     video_title = response["items"][0]["snippet"]["title"]
 
-    twitter_client.update_status(f'New video out! "{video_title}" \nWatch here -> https://www.youtube.com/watch?v={video_id} \nPlease support the channel and subscribe! -> https://www.youtube.com/channel/{channel_id} \nDatetime: {datetime.now()} \n#youtube #python #dailyquote')
+    twitter_client.update_status(f'Today\'s video is live! Title: "{video_title}" \nWatch here -> https://www.youtube.com/watch?v={video_id} \nPlease support the channel and subscribe! -> https://www.youtube.com/channel/{channel_id} \nDatetime: {datetime.now()} \n#youtube #python #dailyquote')
 
 if __name__ == "__main__":
     main()
