@@ -126,11 +126,12 @@ os.mkdir(images_dir)
 
 titles = [f"Daily Quote {datetime.today().strftime('%Y-%m-%d')}", "Quotes Daily", f"{datetime.today().strftime('%Y-%m-%d')} Quote", "Quotes", "Daily Quote", "Quote"]
 
-description = f'''Please enjoy this daily quote! \n
-These quotes are from r/quotes on Reddit \n
+description = f'''Please enjoy this daily quote from u/{author}!
+These quotes are from r/quotes on Reddit
+Link to post -> {url} \n
 This video was created and uploaded via Python!'''
 
-keywords = "quote", "quotes", "daily quote"
+keywords = "quote", "quotes", "daily quote, python, reddit"
 
 #Instanciate upload video class
 upload = UploadVideo()
