@@ -73,7 +73,7 @@ class UploadVideo:
 
   def get_authenticated_service(self, args):
     httplib2.RETRIES = 1
-    CLIENT_SECRETS_FILE = "/Users/cullan/Documents/Python_Projects/youtube_uploader/client_secrets.json"
+    CLIENT_SECRETS_FILE = f"{os.getcwd()}/client_secrets.json"
     YOUTUBE_UPLOAD_SCOPE = "https://www.googleapis.com/auth/youtube.upload"
     YOUTUBE_API_SERVICE_NAME = "youtube"
     YOUTUBE_API_VERSION = "v3"
@@ -96,7 +96,7 @@ class UploadVideo:
       scope=YOUTUBE_UPLOAD_SCOPE,
       message=MISSING_CLIENT_SECRETS_MESSAGE)
 
-    storage = Storage("%s-oauth2.json" % sys.argv[0])
+    storage = Storage("/tmp/main.py-oauth2.json")
     credentials = storage.get()
 
     if credentials is None or credentials.invalid:
@@ -203,5 +203,6 @@ class UploadVideo:
     youtube = self.get_authenticated_service(args)
     try:
       self.initialize_upload(youtube, args)
+      # print(youtube, args)
     except HttpError as e:
       print(("An HTTP error %d occurred:\n%s") % (e.resp.status, e.content))
